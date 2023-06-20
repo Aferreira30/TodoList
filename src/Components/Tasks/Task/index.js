@@ -1,26 +1,25 @@
-import React,{useState} from 'react';
+import { useContext, useState} from 'react';
 
 import { Container,FormTask } from './style';
 
 import lixeira from "../../../Imgs/LIXEIRA.svg";
 import btnA from "../../../Imgs/btnAtive.svg";
 
-export default function Task({onChange, onDelete, value,id}) {
-  const [toggle, setToggle] = useState(false);
-  const ative = toggle;
- function handleClick(event){
-    event.preventDefault();
-    setToggle(!toggle) 
-    
- }
+import { GlobalContext } from '../../context';
 
-  return (
+export default function Task({onChange, onDelete, value,id}) {
+const global = useContext(GlobalContext)
+
+  return ( 
     <Container  >
-      <FormTask ativeToggle={ative}>
+      <FormTask ativeToggle={global.toggle}>
         <div className="btn" key={id}>
-               <button type='button' onClick={handleClick}  >
+               <button type='button' onClick={(event)=>{
+                    event.preventDefault();
+                    global.setToggle(!global.toggle) 
+               }}>
                 {
-                  toggle === true ? 
+                  global.toggle === true ? 
                   <img src={btnA}  alt='btn' id='checked'/> : 
                   null 
                 }
@@ -32,6 +31,7 @@ export default function Task({onChange, onDelete, value,id}) {
         </button>
       </FormTask>
     </Container>
- 
+    
+
   )
 }
