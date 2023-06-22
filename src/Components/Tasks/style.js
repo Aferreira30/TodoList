@@ -48,8 +48,10 @@ margin: 0 auto;
       height: 19px;
       background: ${({theme})=>theme.colors.gray.gray400};
       border-radius: 999px;
+      gap: 5px;
     }
   }
+
 }
 
 `;
